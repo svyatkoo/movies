@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+}
+
+.movieCardContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    align-items: center;
+}
+
+.movieCardContainer h4 {
+    color: snow;
+    padding: 10px;
+    text-align: center;
+}

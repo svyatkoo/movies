@@ -1,0 +1,25 @@
+.mainContainer {
+    display: flex;
+    column-gap: 3%;
+}
+
+.menu {
+    background-color: yellow;
+    min-width: 20%;
+}
+
+/*-------MoviesListPage-------*/
+.mainBody {
+    background-color: deepskyblue;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    row-gap: 30px;
+    column-gap: 30px;
+    padding: 30px;
+}
+
+.mainBody button {
+    margin-left: 10px;
+}
+

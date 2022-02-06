@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom"
-import {HomePage, MoviesListPage} from "./Pages";
+import {HomePage, MovieDetailsPage, MoviesListPage} from "./Pages";
 
 const App = () => {
   return (
@@ -8,7 +8,9 @@ const App = () => {
         App
           <Routes>
               <Route path={"/"} element={<HomePage/>}>
-                  <Route path={"movies"} element={<MoviesListPage/>}/>
+                  <Route path={"movies"} element={<MoviesListPage/>}>
+                      <Route path={":id"} element={<MovieDetailsPage/>}/>
+                  </Route>
               </Route>
 
               {/*<Route path={"users"} element={<UsersPage/>}>*/}

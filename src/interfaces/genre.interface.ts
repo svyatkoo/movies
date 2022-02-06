@@ -1,5 +1,5 @@
 export interface IGenre {
-    in: number,
+    id: number,
     name: string
 }
 

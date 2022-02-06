@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Outlet} from "react-router-dom";
-import {Genres, Header} from "../../components";
 
+import {Genres, Header} from "../../components";
 // @ts-ignore
 import css from "../pages.module.css";
 

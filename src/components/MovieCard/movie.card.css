@@ -9,8 +9,13 @@
     align-items: center;
 }
 
+.movieCardContainer a {
+    text-decoration: none;
+}
+
 .movieCardContainer h4 {
     color: snow;
     padding: 10px;
     text-align: center;
 }
+

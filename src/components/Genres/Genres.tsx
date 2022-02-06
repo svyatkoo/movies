@@ -14,7 +14,7 @@ const Genres:FC = () => {
     return (
         <div>
             Genres
-            {genres.map(item => <li>{item.name}</li> )}
+            {genres.map(item => <li key={item.id}>{item.name}</li> )}
         </div>
     );
 };

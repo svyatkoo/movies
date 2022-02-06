@@ -1,11 +1,12 @@
 import React, {FC} from 'react';
-import {NavLink, Outlet} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const Header:FC = () => {
     return (
         <div>
             Header
-            <NavLink to={"movies"}>Movies2</NavLink>
+            <NavLink to={"movies"}>Movies</NavLink>
+            <NavLink to={"tv"}>TV</NavLink>
         </div>
     );
 };

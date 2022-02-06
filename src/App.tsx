@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom"
-import {HomePage, MovieDetailsPage, MoviesListPage} from "./Pages";
+import {HomePage, MovieDetailsPage, MoviePage, MoviesListPage} from "./Pages";
 
 const App = () => {
   return (
@@ -8,17 +8,11 @@ const App = () => {
         App
           <Routes>
               <Route path={"/"} element={<HomePage/>}>
-                  <Route path={"movies"} element={<MoviesListPage/>}>
+                  <Route path={"movies"} element={<MoviePage/>}>
+                      <Route index element={<MoviesListPage/>}/>
                       <Route path={":id"} element={<MovieDetailsPage/>}/>
                   </Route>
               </Route>
-
-              {/*<Route path={"users"} element={<UsersPage/>}>*/}
-              {/*    <Route path={":id"} element={<UsersDetailsPage/>}/>*/}
-              {/*</Route>*/}
-              {/*<Route path={"posts"} element={<PostsPage/>}/>*/}
-              {/*<Route path={"comments"} element={<CommentsPage/>}/>*/}
-              {/*<Route path={"*"} element={<NotFoundPage/>}/>*/}
           </Routes>
       </div>
   );

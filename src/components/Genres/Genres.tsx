@@ -9,7 +9,7 @@ const Genres:FC = () => {
 
     useEffect(()=> {
         dispatch(getAllGenres())
-    }, [])
+    }, [dispatch])
 
     return (
         <div>

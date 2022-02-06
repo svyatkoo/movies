@@ -1,10 +1,10 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+
 import {IMovie} from "../../interfaces/movie.interface";
 import {movieService} from "../../services/movie.service";
 import {IMovies} from "../../interfaces/movies.interface";
 
 interface IMovieState {
-    // page: null | number,
     page: number,
     movies: IMovie[],
     total_pages: number
@@ -27,7 +27,6 @@ export const getAllMovies = createAsyncThunk(
 export const changeMoviesPage = createAsyncThunk<void, any>(
     "movieSlice/changeMoviesPage",
     async (page, {dispatch}) => {
-        console.log(page)
         const {data} = await movieService.changePage(page);
         dispatch(setMovies({moviesData: data}));
     }

@@ -11,6 +11,9 @@
 /*-------MoviesListPage-------*/
 .mainBody {
     background-color: deepskyblue;
+}
+
+.movieList {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -19,7 +22,29 @@
     padding: 30px;
 }
 
-.mainBody button {
-    margin-left: 10px;
+.navButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5%;
+    height: 50px;
 }
 
+.navButtons button {
+    padding: 5px 30px;
+    height: fit-content;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.navButtons button:hover {
+    background-color: darkorange;
+    font-weight: bold;
+}
+
+
+.footer {
+    height: 70px;
+    background-color: black;
+    color: snow;
+}

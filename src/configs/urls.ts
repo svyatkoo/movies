@@ -1,24 +1,24 @@
-// const moviesURL: string = "https://api.themoviedb.org/3/discover/movie?api_key=d98b6e0cc9c9689fdead469e531a7dbc&page=21";
-// const moviesURL: string = "https://api.themoviedb.org/3/movie/550?api_key=d98b6e0cc9c9689fdead469e531a7dbc";
-// const trendingMoviesURL: string = "https://api.themoviedb.org/3/trending/movie/week?api_key=d98b6e0cc9c9689fdead469e531a7dbc";
-const trendingMoviesURL: string = "https://api.themoviedb.org/3/trending";
+// https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=d98b6e0cc9c9689fdead469e531a7dbc
+// https://api.themoviedb.org/3/genre/movie/list?api_key=d98b6e0cc9c9689fdead469e531a7dbc&language=en-US
 
-const moviesURL: string = "https://api.themoviedb.org/3/discover";
+const moviesURL: string = "https://api.themoviedb.org/3";
 
-const photoURL: string = "https://image.tmdb.org/t/p"; //w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg
+const photoURL: string = "https://image.tmdb.org/t/p"; //w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg.0
 
 const urls = {
+    discover: "/discover",
     movie: "/movie",
-    images: "/images"
+    genre:"/genre",
+    // genre: "/?with_genres="
 }
 
-const timeFrame = {
-    day: "/day",
-    week: "/week"
-}
+// const timeFrame = {
+//     day: "/day",
+//     week: "/week"
+// }
 
 const apiKey = {
-    api: "?api_key=d98b6e0cc9c9689fdead469e531a7dbc"
+    token: "d98b6e0cc9c9689fdead469e531a7dbc"
 }
 
 const photoSize = {
@@ -28,10 +28,9 @@ const photoSize = {
 
 export {
     moviesURL,
-    trendingMoviesURL,
     photoURL,
     urls,
     apiKey,
-    timeFrame,
+    // timeFrame,
     photoSize
 };

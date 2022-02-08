@@ -17,7 +17,7 @@ const MovieDetailsPage: FC = () => {
         }
         dispatch(getMovieById(Number(pageId.id)));
         dispatch(getPhotos(Number(pageId.id)))
-    }, [chooseMovieId, pageId.id])
+    }, [chooseMovieId, dispatch, pageId.id])
 
     return (
         <div>

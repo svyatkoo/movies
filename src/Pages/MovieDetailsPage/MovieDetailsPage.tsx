@@ -1,7 +1,7 @@
 import React, {FC, useEffect} from 'react';
 
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {getMovieById} from "../../store";
+import {getMovieById, getPhotos} from "../../store";
 import {MovieDetailCard} from "../../components";
 
 const MovieDetailsPage: FC = () => {
@@ -10,7 +10,11 @@ const MovieDetailsPage: FC = () => {
 
     useEffect(() => {
         dispatch(getMovieById(chooseMovieId));
-    }, [chooseMovieId])
+    }, [])
+
+    useEffect(()=> {
+        dispatch(getPhotos(chooseMovieId));
+    }, [])
 
     return (
         <div>

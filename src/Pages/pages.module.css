@@ -11,6 +11,7 @@
 /*-------MoviesListPage-------*/
 .mainBody {
     background-color: deepskyblue;
+    /*background-image: linear-gradient( gray, white, deepskyblue);*/
 }
 
 .movieList {
@@ -45,6 +46,6 @@
 
 .footer {
     height: 70px;
-    background-color: black;
+    background-color: dodgerblue;
     color: snow;
 }

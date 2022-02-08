@@ -8,7 +8,6 @@ import css from "../pages.module.css";
 const HomePage:FC = () => {
     return (
         <div>
-            HomePage
             <Header/>
             <div className={css.mainContainer}>
                 <div className={css.menu}>

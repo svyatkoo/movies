@@ -1,0 +1,114 @@
+:root {
+    --fonBlueDark: rgb(30, 144, 255, 0.8);
+    --fonBodyMain: rgb(0, 191, 255, 0.7);
+    --textColorLight: rgb(239, 239, 239);
+}
+
+* {
+    margin: 0;
+}
+
+/*-------MovieCard-------*/
+.movieCardContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    align-items: center;
+}
+
+.movieCardContainer a {
+    text-decoration: none;
+}
+
+.movieCardContainer h4 {
+    color: var(--textColorLight);
+    padding: 10px;
+    text-align: center;
+}
+
+/*-------MovieDetailCard------*/
+.container {
+    padding: 50px;
+}
+
+.mainWrapper {
+    border: 2px solid var(--textColorLight);
+    display: flex;
+    column-gap: 20px;
+    background-image: linear-gradient(gray, white, deepskyblue);
+}
+
+.leftSlider {
+    font-size: 24px
+}
+
+.leftSliderInfo {
+    padding: 30px;
+}
+
+.leftSliderInfo div {
+    margin-bottom: 10px;
+}
+
+.mainBody {
+    font-size: 24px;
+    text-align: justify;
+}
+
+.mainBodyHeader {
+    margin-top: 30px;
+}
+
+.mainBodyHeader a {
+    text-decoration: none;
+}
+
+.mainBodyActors {
+    margin-top: 20px;
+}
+
+.actors {
+    display: flex;
+}
+
+.actorsItem {
+    width: 100px;
+}
+
+.mainBodyOverview {
+    margin-top: 30px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.mainBodyPhotoSlider {
+    padding: 10px 0;
+}
+
+.videoContainer {
+    height: 400px;
+    border: 2px solid var(--textColorLight);
+    background-image: var(--fonBlueDark);
+    text-align: center;
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--textColorLight);
+}
+
+/*-------MoviePhotos----------*/
+.photosWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 273px;
+    overflow-y: scroll;
+}
+
+.photosWrapper img {
+    width: 25%;
+}
+
+.photosWrapper::-webkit-scrollbar {
+    width: 0;
+}

@@ -57,7 +57,6 @@ export const getPhotos = createAsyncThunk<void, number>(
     }
 )
 
-
 const movieSlice = createSlice({
     name: "movieSlice",
     initialState,
@@ -68,18 +67,12 @@ const movieSlice = createSlice({
             state.total_pages = action.payload.moviesData.total_pages;
         },
         getId: (state, action: PayloadAction<number>) => {
-            // console.log("getId");
-            // console.log(action.payload);
             state.chooseMovieId = action.payload
         },
         getMovieInfo: (state, action: PayloadAction<{ movie: IMovieDetails }>) => {
-            // console.log("getMovieInfo");
-            // console.log(action.payload.movie);
             state.movieDetails = action.payload.movie
         },
         getMoviePhotos: (state, action: PayloadAction<{ photos: IMovieImages }>) => {
-            console.log("IMovieImages");
-            console.log(action.payload.photos);
             state.moviePhotos = action.payload.photos
         }
     },

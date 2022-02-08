@@ -1,4 +1,5 @@
 import React, {FC, useEffect} from 'react';
+import {useParams} from "react-router-dom";
 
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {getMovieById, getPhotos} from "../../store";
@@ -7,14 +8,16 @@ import {MovieDetailCard} from "../../components";
 const MovieDetailsPage: FC = () => {
     const {movieDetails, chooseMovieId} = useAppSelector(state => state.movieReducer);
     const dispatch = useAppDispatch();
+    const pageId = useParams();
 
     useEffect(() => {
-        dispatch(getMovieById(chooseMovieId));
-    }, [])
-
-    useEffect(()=> {
-        dispatch(getPhotos(chooseMovieId));
-    }, [])
+        if (chooseMovieId) {
+            dispatch(getMovieById(chooseMovieId));
+            dispatch(getPhotos(chooseMovieId))
+        }
+        dispatch(getMovieById(Number(pageId.id)));
+        dispatch(getPhotos(Number(pageId.id)))
+    }, [chooseMovieId, pageId.id])
 
     return (
         <div>

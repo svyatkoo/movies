@@ -10,3 +10,4 @@ const MoviePage:FC = () => {
 };
 
 export {MoviePage};
+

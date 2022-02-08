@@ -1,14 +1,18 @@
 import React, {FC} from 'react';
-import {Outlet} from "react-router-dom";
+import {NavLink, Outlet} from "react-router-dom";
 
-import {Genres, Header} from "../../components";
+import {Genres} from "../../components";
 // @ts-ignore
 import css from "../pages.module.css";
 
-const HomePage:FC = () => {
+const HomePage: FC = () => {
     return (
-        <div>
-            <Header/>
+        <div className={css.wrapper}>
+            <div className={css.header}>
+                <NavLink to={"movies"}>Movies</NavLink>
+                <NavLink to={"tv"}>TV</NavLink>
+            </div>
+
             <div className={css.mainContainer}>
                 <div className={css.menu}>
                     <Genres/>
@@ -20,7 +24,7 @@ const HomePage:FC = () => {
             </div>
 
             <div className={css.footer}>
-                footer
+                <p>@footer</p>
             </div>
         </div>
     );

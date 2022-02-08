@@ -15,13 +15,13 @@ const MoviesListPage: FC = () => {
     }, [])
 
     return (
-        <div className={css.mainBody}>
+        <div>
             <div className={css.movieList}>
                 {movies.map(movie => <MovieCard key={movie.id} movie={movie}/>)}
             </div>
 
             <div className={css.navButtons}>
-                {page > 1 ? <button onClick={() => dispatch(changeMoviesPage(page - 1))}>Previes</button> : ""}
+                {page > 1 ? <button onClick={() => dispatch(changeMoviesPage(page - 1))}>Previews</button> : ""}
                 {page ? <h3>Page: {page} of: {total_pages}</h3> : ""}
                 {page <= total_pages ? <button onClick={() => dispatch(changeMoviesPage(page + 1))}>Next</button> : ""}
             </div>

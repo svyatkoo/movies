@@ -1,19 +1,55 @@
-.mainContainer {
-    display: flex;
-    column-gap: 3%;
-}
-
-.menu {
-    background-color: yellow;
-    min-width: 20%;
-}
-
-/*-------MoviesListPage-------*/
-.mainBody {
-    background-color: deepskyblue;
+:root{
+    --fonBlueDark: rgb(30,144,255, 0.8);
+    --fonBodyMain: rgb(0,191,255, 0.7);
+    --textColorLight: rgb(239,239,239);
+    --dark: #112A40;
+    --grey: #CED8E1;
     /*background-image: linear-gradient( gray, white, deepskyblue);*/
 }
 
+
+
+.wrapper {
+    background-image: url(../photos/1.jpg);
+    background-size: cover;
+    padding: 50px 100px;
+}
+
+/*-----header------*/
+.header {
+    height: 100px;
+    background-color: var(--fonBlueDark);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 50px;
+    border-radius: 50px 50px 0 0;
+
+}
+
+.header a {
+    font-size: 36px;
+    font-weight: bold;
+    text-decoration: none;
+    color: snow;
+}
+
+/*--------body--------*/
+.mainContainer {
+    background-color: var(--fonBodyMain);
+    display: flex;
+    /*column-gap: 3%;*/
+}
+
+.menu {
+    background-color: var(--fonBodyMain);
+    min-width: 15%;
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+/*-------MoviesListPage-------*/
 .movieList {
     display: flex;
     flex-wrap: wrap;
@@ -29,6 +65,9 @@
     align-items: center;
     column-gap: 5%;
     height: 50px;
+    padding-top: 30px;
+    margin-bottom: 50px;
+    border-top: 2px solid var(--textColorLight);
 }
 
 .navButtons button {
@@ -45,7 +84,13 @@
 
 
 .footer {
+    background-color: var(--fonBlueDark);
+    color: var(--textColorLight);
     height: 70px;
-    background-color: dodgerblue;
-    color: snow;
+    border-radius: 0 0 50px 50px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 20px;
+    padding-right: 100px;
 }

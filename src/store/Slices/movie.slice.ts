@@ -10,7 +10,7 @@ interface IMovieState {
     movies: IMovie[],
     total_pages: number,
     movieDetails: IMovieDetails | null,
-    chooseMovieId: number | null
+    chooseMovieId: number
 }
 
 const initialState: IMovieState = {
@@ -18,7 +18,7 @@ const initialState: IMovieState = {
     movies: [],
     total_pages: 0,
     movieDetails: null,
-    chooseMovieId: null
+    chooseMovieId: 0
 }
 
 export const getAllMovies = createAsyncThunk(

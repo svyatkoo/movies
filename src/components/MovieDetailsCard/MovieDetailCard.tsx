@@ -11,7 +11,7 @@ import css from "../components.module.css";
 const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
     const {
         vote_count, vote_average, poster_path, original_title, tagline, status, runtime,
-        spoken_languages, release_date, id, production_countries, overview, homepage,
+        spoken_languages, release_date, id, budget, production_countries, overview, homepage,
         genres, popularity,
     } = movieData;
     const poster = photoURL + photoSize.w400 + poster_path;
@@ -56,10 +56,11 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
                         <div>Runtime: {runtime} min.</div>
                         <div>Genres: | {genres.map(item => item.name + " | ")}</div>
                         <div>Production countries: {production_countries[0].name}</div>
+                        <div>Budget: {budget}$</div>
                         <div>Release date: {release_date}</div>
                         <div>Spoken languages: {spoken_languages[0].english_name}</div>
                         <div>Status: {status}</div>
-                        <div>Homepage: <a href={homepage}>{homepage}</a></div>
+                        <div>Homepage: <a href={homepage?.toString()}>{homepage}</a></div>
                     </div>
 
                     <div className={css.mainBodyActors}>

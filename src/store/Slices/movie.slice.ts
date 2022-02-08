@@ -3,21 +3,22 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IMovie} from "../../interfaces/movie.interface";
 import {movieService} from "../../services/movie.service";
 import {IMovies} from "../../interfaces/movies.interface";
+import {IMovieDetails} from "../../interfaces/movie.details.interface";
 
 interface IMovieState {
     page: number,
     movies: IMovie[],
     total_pages: number,
-    movieDetails: object,
-    chooseMovieId: number
+    movieDetails: IMovieDetails | null,
+    chooseMovieId: number | null
 }
 
 const initialState: IMovieState = {
     page: 0,
     movies: [],
     total_pages: 0,
-    movieDetails: {},
-    chooseMovieId: 550
+    movieDetails: null,
+    chooseMovieId: null
 }
 
 export const getAllMovies = createAsyncThunk(
@@ -30,7 +31,7 @@ export const getAllMovies = createAsyncThunk(
 
 export const changeMoviesPage = createAsyncThunk<void, any>(
     "movieSlice/changeMoviesPage",
-    async (page, {dispatch}) => {
+    async (page:number, {dispatch}) => {
         const {data} = await movieService.changePage(page);
         dispatch(setMovies({moviesData: data}));
     }
@@ -55,16 +56,16 @@ const movieSlice = createSlice({
             state.page = action.payload.moviesData.page;
             state.total_pages = action.payload.moviesData.total_pages;
         },
-        getMovieInfo: (state, action) => {
-            console.log("action.payload.movie");
+        getId: (state, action:PayloadAction<number>) => {
+            console.log("getId");
+            console.log(action.payload);
+            state.chooseMovieId = action.payload
+        },
+        getMovieInfo: (state, action:PayloadAction<{movie: IMovieDetails}>) => {
+            console.log("getMovieInfo");
             console.log(action.payload.movie);
             state.movieDetails = action.payload.movie
         },
-        getId: (state, action) => {
-            // console.log("action.payload.movie");
-            // console.log(action.payload);
-            state.chooseMovieId = action.payload
-        }
     }
 })
 

@@ -11,13 +11,13 @@ import css from "../components.module.css";
 
 const MovieCard: FC<{ movie: IMovie }> = ({movie}) => {
     const {id, original_title, poster_path} = movie;
-    const poster = photoURL+photoSize.w200+poster_path;
+    let poster = photoURL+photoSize.w200+poster_path;
     const dispatch = useAppDispatch();
 
     return (
         <div className={css.movieCardContainer}>
-            <Link to={id.toString()} onClick={()=>dispatch(getId(id))}>
-                <img src={poster} alt={poster_path}/>
+            <Link to={"/movies/"+id.toString()} onClick={()=>dispatch(getId(id))}>
+                <img src={poster} alt={poster_path} />
                 <h4>{original_title}</h4>
             </Link>
         </div>

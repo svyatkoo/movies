@@ -1,20 +1,34 @@
 import React, {FC, useEffect} from 'react';
+import {Link} from "react-router-dom";
 
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {getAllGenres} from "../../store/Slices/genre.slice";
+import {getAllGenres, setGenre} from "../../store/Slices/genre.slice";
+import {getMoviesByGenre} from "../../store";
+// @ts-ignore
+import css from "../components.module.css";
 
-const Genres:FC = () => {
+const Genres: FC = () => {
     const {genres} = useAppSelector(state => state.genreReducer);
     const dispatch = useAppDispatch();
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(getAllGenres())
-    }, [dispatch])
+    }, [dispatch, genres?.length])
 
     return (
-        <div>
-            Genres
-            {genres.map(item => <li key={item.id}>{item.name}</li> )}
+        <div className={css.genresBox}>
+            <h3>Genres:</h3>
+
+            {genres?.map(item =>
+                <Link
+                    key={item.id}
+                    to={"movies/genre/" + item.id} onClick={() => {
+                    dispatch(setGenre({data: item}));
+                    dispatch(getMoviesByGenre(item.id))
+                }}>
+                    <li>{item.name}</li>
+                </Link>
+            )}
         </div>
     );
 };

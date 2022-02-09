@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {NavLink, Outlet} from "react-router-dom";
 
-import {Genres} from "../../components";
+import {Genres, UserInfo} from "../../components";
 // @ts-ignore
 import css from "../pages.module.css";
 
@@ -11,11 +11,18 @@ const HomePage: FC = () => {
             <div className={css.header}>
                 <NavLink to={"movies"}>Movies</NavLink>
                 <NavLink to={"tv"}>TV</NavLink>
+                <NavLink to={"user"}>UserPage</NavLink>
             </div>
 
             <div className={css.mainContainer}>
                 <div className={css.menu}>
-                    <Genres/>
+                    <div>
+                        <UserInfo/>
+                    </div>
+
+                    <div>
+                        <Genres/>
+                    </div>
                 </div>
 
                 <div>

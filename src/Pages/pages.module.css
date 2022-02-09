@@ -39,14 +39,17 @@
 .mainContainer {
     background-color: var(--fonBodyMain);
     display: flex;
-    /*column-gap: 3%;*/
 }
 
 .menu {
     background-color: var(--fonBodyMain);
-    min-width: 15%;
+    min-width: fit-content;
     padding: 50px;
     box-sizing: border-box;
+}
+
+.menu a {
+    text-decoration: none;
 }
 
 /*-------MoviesListPage-------*/
@@ -93,4 +96,10 @@
     align-items: center;
     font-size: 20px;
     padding-right: 100px;
+}
+
+/*---------MoviesGenreListPage---------*/
+.genreHeader {
+    padding: 20px 0 10px 40px;
+    border-bottom: 2px solid var(--textColorLight);
 }

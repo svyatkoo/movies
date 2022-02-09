@@ -4,7 +4,8 @@ import {IMovieDetails} from "../../interfaces/movie.details.interface";
 import {photoSize, photoURL} from "../../configs/urls";
 import {MoviePhotos} from "../MoviePhotos/MoviePhotos";
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {getPhotos} from "../../store";
+import {getMovieCredits, getPhotos} from "../../store";
+import {MovieCast} from "../MovieCast/MovieCast";
 // @ts-ignore
 import css from "../components.module.css";
 
@@ -16,20 +17,19 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
     } = movieData;
     const poster = photoURL + photoSize.w400 + poster_path;
 
-    const {moviePhotos, chooseMovieId, movieDetails} = useAppSelector(state => state.movieReducer);
+    const {moviePhotos, chooseMovieId, movieDetails, credits} = useAppSelector(state => state.movieReducer);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(getPhotos(chooseMovieId))
-        getPhotos(chooseMovieId);
+        if (chooseMovieId) {
+            dispatch(getPhotos(Number(chooseMovieId)));
+            dispatch(getMovieCredits(Number(chooseMovieId)))
+        }
+        // @ts-ignore
+        const myId = JSON.parse(localStorage.getItem("myId"));
+        dispatch(getPhotos(Number(myId)));
+        dispatch(getMovieCredits(Number(myId)))
     }, [movieDetails])
-
-//     console.log("//////////////");
-//     console.log("chooseMovieId");
-//     console.log(chooseMovieId);
-//     console.log("//////////////");
-    const poster3 = photoURL + photoSize.w45 + "/mW1NolxQmPE16Zg6zuWyZlFgOwL.jpg";
-
 
     return (
         <div className={css.container}>
@@ -60,20 +60,13 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
                         <div>Release date: {release_date}</div>
                         <div>Spoken languages: {spoken_languages[0].english_name}</div>
                         <div>Status: {status}</div>
-                        <div>Homepage: <a href={homepage?.toString()}>{homepage}</a></div>
+                        <div>Homepage: <a href={homepage?.toString()}>click to visit</a></div>
                     </div>
 
                     <div className={css.mainBodyActors}>
-                        <div>Actors:</div>
+                        <div className={css.actorsHeader}>Actors:</div>
                         <div className={css.actors}>
-                            <div className={css.actorsItem}>
-                                <img src={poster3} alt="poster"/>
-                                <p>ACTOR NAME</p>
-                            </div>
-                            <div className={css.actorsItem}>
-                                <img src={poster3} alt="poster"/>
-                                <p>ACTOR NAME</p>
-                            </div>
+                            {credits && credits.cast.map(actor => actor.profile_path && <MovieCast key={actor.id} actor={actor} />)}
                         </div>
                     </div>
 

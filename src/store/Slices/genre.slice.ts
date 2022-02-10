@@ -33,7 +33,6 @@ const genreSlice = createSlice({
             state.genreId = action.payload.data.id;
             state.genreName = action.payload.data.name;
         }
-
     }
 })
 
@@ -41,4 +40,3 @@ const genreReducer = genreSlice.reducer;
 export default genreReducer;
 
 export const {setGenres, setGenre} = genreSlice.actions;
-// setGenreId

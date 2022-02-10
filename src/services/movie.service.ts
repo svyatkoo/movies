@@ -5,6 +5,7 @@ import {IMovies} from "../interfaces/movies.interface";
 import {IMovieDetails} from "../interfaces/movie.details.interface";
 import {IMovieImages} from "../interfaces/movie.images.interface";
 import {ICredits} from "../interfaces/credits.interface";
+import {IMovieVideo} from "../interfaces/movie.video.interface";
 
 export const movieService = {
     getAll: () => moviesAxiosService.get<IMovies>(`${urls.discover}${urls.movie}?api_key=${apiKey.token}`), // + &page=2
@@ -16,5 +17,6 @@ export const movieService = {
     changeGenreMoviePage: (page: number, id: number) =>
         moviesAxiosService.get<IMovies>(`${urls.discover}${urls.movie}?with_genres=${id}&page=${page}&api_key=${apiKey.token}`),
     getCredits:(id: number) => moviesAxiosService.get<ICredits>(`${urls.movie}/${id}/credits?api_key=${apiKey.token}`),
+    getVideo:(id:number) => moviesAxiosService.get<IMovieVideo>(`${urls.movie}/${id}/videos?api_key=${apiKey.token}`)
 }
 

@@ -4,7 +4,7 @@ import {IMovieDetails} from "../../interfaces/movie.details.interface";
 import {photoSize, photoURL} from "../../configs/urls";
 import {MoviePhotos} from "../MoviePhotos/MoviePhotos";
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {getMovieCredits, getPhotos} from "../../store";
+import {getMovieCredits, getMovieVideo, getPhotos} from "../../store";
 import {MovieCast} from "../MovieCast/MovieCast";
 // @ts-ignore
 import css from "../components.module.css";
@@ -15,21 +15,16 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
         spoken_languages, release_date, id, budget, production_countries, overview, homepage,
         genres, popularity,
     } = movieData;
-    const poster = photoURL + photoSize.w400 + poster_path;
+    const poster = photoURL + photoSize.w300 + poster_path;
 
-    const {moviePhotos, chooseMovieId, movieDetails, credits} = useAppSelector(state => state.movieReducer);
+    const {moviePhotos, credits, video} = useAppSelector(state => state.movieReducer);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (chooseMovieId) {
-            dispatch(getPhotos(Number(chooseMovieId)));
-            dispatch(getMovieCredits(Number(chooseMovieId)))
-        }
-        // @ts-ignore
-        const myId = JSON.parse(localStorage.getItem("myId"));
-        dispatch(getPhotos(Number(myId)));
-        dispatch(getMovieCredits(Number(myId)))
-    }, [movieDetails])
+        dispatch(getPhotos(id));
+        dispatch(getMovieCredits(id));
+        dispatch(getMovieVideo(id));
+    }, [id])
 
     return (
         <div className={css.container}>
@@ -47,7 +42,7 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
                 </div>
 
                 <div className={css.mainBody}>
-                    <div>
+                    <div className={css.mainBodyTitle}>
                         <h1>{original_title}</h1>
                         <h4>{tagline}</h4>
                     </div>
@@ -66,7 +61,8 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
                     <div className={css.mainBodyActors}>
                         <div className={css.actorsHeader}>Actors:</div>
                         <div className={css.actors}>
-                            {credits && credits.cast.map(actor => actor.profile_path && <MovieCast key={actor.id} actor={actor} />)}
+                            {credits && credits.cast.map(actor => actor.profile_path &&
+                                <MovieCast key={actor.id} actor={actor}/>)}
                         </div>
                     </div>
 
@@ -83,7 +79,11 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
             </div>
 
             <div className={css.videoContainer}>
-                <h1>Video Player</h1>
+                {video?.results[0]?.key ? "" : <h1>Video Player</h1>}
+                {video?.results[0]?.key && <iframe
+                    src={"https://www.youtube.com/embed/" + video.results[0].key}
+                    title={video.results[0].type}
+                />}
             </div>
         </div>
     );

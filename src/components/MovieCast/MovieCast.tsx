@@ -1,4 +1,5 @@
 import React, {FC} from 'react';
+
 import {ICast} from "../../interfaces/credits.interface";
 import {photoSize, photoURL} from "../../configs/urls";
 // @ts-ignore

@@ -1,9 +1,11 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+
 import {movieService} from "../../services/movie.service";
 import {IMovies} from "../../interfaces/movies.interface";
 import {IMovieDetails} from "../../interfaces/movie.details.interface";
 import {IMovieImages} from "../../interfaces/movie.images.interface";
 import {ICredits} from "../../interfaces/credits.interface";
+import {IMovieVideo} from "../../interfaces/movie.video.interface";
 
 interface IMovieState {
     page: number | null,
@@ -12,7 +14,8 @@ interface IMovieState {
     movieDetails: IMovieDetails | null,
     chooseMovieId: number | null,
     moviePhotos: IMovieImages | null,
-    credits: ICredits | null
+    credits: ICredits | null,
+    video: IMovieVideo | null
 }
 
 const initialState: IMovieState = {
@@ -22,7 +25,8 @@ const initialState: IMovieState = {
     movieDetails: null,
     chooseMovieId: null,
     moviePhotos: null,
-    credits: null
+    credits: null,
+    video: null
 }
 
 export const getAllMovies = createAsyncThunk<void, void>(
@@ -81,6 +85,14 @@ export const changeGenreMoviesPage = createAsyncThunk<void, any>(
     }
 )
 
+export const getMovieVideo = createAsyncThunk<void, number>(
+    "movieSlice/getMovieVideo",
+    async (chooseMovieId, {dispatch}) => {
+        const {data} = await movieService.getVideo(chooseMovieId);
+        dispatch(setVideo(data))
+    }
+)
+
 const movieSlice = createSlice({
     name: "movieSlice",
     initialState,
@@ -94,7 +106,6 @@ const movieSlice = createSlice({
             state.chooseMovieId = action.payload
             const storeId = JSON.stringify(state.chooseMovieId);
             localStorage.setItem("myId", storeId);
-
         },
         getMovieInfo: (state, action: PayloadAction<{ movie: IMovieDetails }>) => {
             state.movieDetails = action.payload.movie
@@ -102,8 +113,11 @@ const movieSlice = createSlice({
         getMoviePhotos: (state, action: PayloadAction<{ photos: IMovieImages }>) => {
             state.moviePhotos = action.payload.photos
         },
-        setMovieCredits: (state, action:PayloadAction<{credits:ICredits}>) => {
+        setMovieCredits: (state, action: PayloadAction<{ credits: ICredits }>) => {
             state.credits = action.payload.credits
+        },
+        setVideo: (state, action: PayloadAction<IMovieVideo>) => {
+            state.video = action.payload
         }
     },
 })
@@ -111,4 +125,4 @@ const movieSlice = createSlice({
 const movieReducer = movieSlice.reducer;
 export default movieReducer;
 
-export const {setMovies, getMovieInfo, getId, getMoviePhotos, setMovieCredits} = movieSlice.actions;
+export const {setMovies, getMovieInfo, getId, getMoviePhotos, setMovieCredits, setVideo} = movieSlice.actions;

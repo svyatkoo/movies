@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {NavLink, Outlet} from "react-router-dom";
 
 import {Genres, UserInfo} from "../../components";
@@ -6,12 +6,32 @@ import {Genres, UserInfo} from "../../components";
 import css from "../pages.module.css";
 
 const HomePage: FC = () => {
+    const [theme, setTheme] = useState(localStorage.getItem("theme"));
+
+    function getTheme() {
+        const currentTheme = localStorage.getItem("theme") || "light";
+        localStorage.setItem("theme", currentTheme);
+    }
+    getTheme()
+
+    function switchTheme() {
+        const toggleValue = (localStorage.getItem("theme") === "dark") ? "light" : "dark"
+        localStorage.setItem("theme", toggleValue)
+        const currentTheme = localStorage.getItem("theme");
+        setTheme(currentTheme);
+        // getTheme();
+    }
+
     return (
-        <div className={css.wrapper}>
+        <div className={`${css.wrapper} ${theme === 'light' ? css.light : css.dark}`}>
             <div className={css.header}>
-                <NavLink to={"movies"}>Movies</NavLink>
-                <NavLink to={"tv"}>TV</NavLink>
-                <NavLink to={"user"}>UserPage</NavLink>
+                <div className={css.headerMenu}>
+                    <NavLink to={"movies"}>Movies</NavLink>
+                    <NavLink to={"tv"}>TV</NavLink>
+                    <NavLink to={"user"}>UserPage</NavLink>
+                </div>
+
+                <button id="theme" onClick={() => switchTheme()}>{theme ? theme : "light"}</button>
             </div>
 
             <div className={css.mainContainer}>

@@ -1,38 +1,66 @@
-:root{
-    --fonBlueDark: rgb(30,144,255, 0.8);
-    --fonBodyMain: rgb(0,191,255, 0.7);
-    --textColorLight: rgb(239,239,239);
-    --dark: #112A40;
-    --grey: #CED8E1;
-    /*background-image: linear-gradient( gray, white, deepskyblue);*/
+.light {
+    --fonBlueDark: rgb(30, 144, 255, 0.8);
+    --fonBodyMain: rgb(0, 191, 255, 0.7);
+    --textColorBlack: rgb(0,0,0);
+    --textColorLight: rgb(239, 239, 239);
+    --fonBlack: rgb(65,40,255, 0.8);
+    --textColorGenre: rgb(0, 0 ,0);
+    --textFonGenre: rgb(56,69,255, 0.8);
+    --textColorBtn: rgb(255,165,0);
+    --fonMovieDetails: linear-gradient(gray, white, deepskyblue);
+    --mainPPicture: url(../photos/1.jpg);
 }
 
-
+.dark {
+    --fonBlueDark: rgb(0, 0, 0, 0.7);
+    --fonBodyMain: rgb(0, 0, 0, 0.5);
+    --textColorBlack: rgb(239, 239, 239);
+    --textColorDetails: rgb(66,134,244);
+    --fonBlack: rgb(6, 14, 31, 0.8);
+    --textColorGenre: rgb(239, 239, 239);
+    --textFonGenre: rgb(255,165,0);
+    --textColorBtn: rgb(255,165,0);
+    --fonMovieDetails: linear-gradient(rgb(15,32,39), rgb(32,58,67), rgb(44,83,100), transparent 80%);
+    --mainPPicture: url(../photos/3.jpg);
+}
 
 .wrapper {
-    background-image: url(../photos/1.jpg);
+    background-image: var(--mainPPicture);
     background-size: cover;
-    padding: 50px 100px;
+    padding: 50px 80px;
 }
 
 /*-----header------*/
 .header {
-    height: 100px;
+    height: 60px;
     background-color: var(--fonBlueDark);
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     column-gap: 50px;
+    padding: 0 100px 0 300px;
     border-radius: 50px 50px 0 0;
+}
 
+.headerMenu {
+    display: flex;
+    column-gap: 30px;
 }
 
 .header a {
-    font-size: 36px;
+    font-size: 20px;
     font-weight: bold;
     text-decoration: none;
-    color: snow;
+    color: var(--textColorBlack);
+}
+
+.header button {
+    width: 60px;
+    background-color: var(--fonBodyMain);
+    border: 2px solid var(--textColorBlack);
+    border-radius: 50px;
+    color: var(--textColorBlack);
 }
 
 /*--------body--------*/
@@ -42,10 +70,10 @@
 }
 
 .menu {
-    background-color: var(--fonBodyMain);
     min-width: fit-content;
-    padding: 50px;
+    padding: 50px 30px;
     box-sizing: border-box;
+    /*background-color: var(--fonBodyMain);*/
 }
 
 .menu a {
@@ -71,6 +99,7 @@
     padding-top: 30px;
     margin-bottom: 50px;
     border-top: 2px solid var(--textColorLight);
+    color: var(--textColorBlack);
 }
 
 .navButtons button {
@@ -78,10 +107,11 @@
     height: fit-content;
     border-radius: 10px;
     font-size: 14px;
+    background: white;
 }
-
+/*//////////////////////////////////////////////////////*/
 .navButtons button:hover {
-    background-color: darkorange;
+    background-color: var(--textColorBtn);
     font-weight: bold;
 }
 
@@ -102,4 +132,6 @@
 .genreHeader {
     padding: 20px 0 10px 40px;
     border-bottom: 2px solid var(--textColorLight);
+    border-top: 2px solid var(--textColorLight);
+    color: var(--textColorLight);
 }

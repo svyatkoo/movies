@@ -60,7 +60,7 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
                         <div>Release date: {release_date}</div>
                         <div>Spoken languages: {spoken_languages[0].english_name}</div>
                         <div>Status: {status}</div>
-                        <div>Homepage: <a href={homepage?.toString()}>click to visit</a></div>
+                        {homepage && <div>Homepage: <a href={homepage?.toString()}>click to visit</a></div>}
                     </div>
 
                     <div className={css.mainBodyActors}>

@@ -2,8 +2,7 @@ import React, {FC, useEffect} from 'react';
 import {Link} from "react-router-dom";
 
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {getAllGenres, setGenre} from "../../store/Slices/genre.slice";
-import {getMoviesByGenre} from "../../store";
+import {getAllGenres, getMoviesByGenre, setGenre} from "../../store";
 // @ts-ignore
 import css from "../components.module.css";
 

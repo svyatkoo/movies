@@ -4,7 +4,7 @@ import {HomePage, MovieDetailsPage, MoviePage, MoviesGenreListPage, MoviesListPa
 
 const App = () => {
     return (
-        <div >
+        <div>
             <Routes>
                 <Route path={"/"} element={<HomePage/>}>
                     <Route path={"movies"} element={<MoviePage/>}>
@@ -15,7 +15,6 @@ const App = () => {
                         </Route>
                     </Route>
                     <Route path={"user"} element={<UserPage/>}/>
-                    <Route path={"tv"} element={<MoviePage/>}/>
                 </Route>
             </Routes>
         </div>

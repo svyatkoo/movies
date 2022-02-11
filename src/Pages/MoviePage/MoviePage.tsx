@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Outlet} from "react-router-dom";
 
-const MoviePage:FC = () => {
+const MoviePage: FC = () => {
     return (
         <div>
             <Outlet/>

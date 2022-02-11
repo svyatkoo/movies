@@ -15,7 +15,9 @@ interface IMovieState {
     chooseMovieId: number | null,
     moviePhotos: IMovieImages | null,
     credits: ICredits | null,
-    video: IMovieVideo | null
+    video: IMovieVideo | null,
+    fetchStatus: string | null,
+    error: string | null
 }
 
 const initialState: IMovieState = {
@@ -26,7 +28,9 @@ const initialState: IMovieState = {
     chooseMovieId: null,
     moviePhotos: null,
     credits: null,
-    video: null
+    video: null,
+    fetchStatus: null,
+    error: null
 }
 
 export const getAllMovies = createAsyncThunk<void, void>(
@@ -93,6 +97,17 @@ export const getMovieVideo = createAsyncThunk<void, number>(
     }
 )
 
+export const sendMovieRating = createAsyncThunk<void, any>(
+    "movieSlice/sendMovieRating",
+    async ({id, userRating}, {dispatch, rejectWithValue}) => {
+        try {
+            await movieService.sendRating(id, userRating);
+        } catch (e: any) {
+            return rejectWithValue(e.message)
+        }
+    }
+)
+
 const movieSlice = createSlice({
     name: "movieSlice",
     initialState,
@@ -118,11 +133,25 @@ const movieSlice = createSlice({
         },
         setVideo: (state, action: PayloadAction<IMovieVideo>) => {
             state.video = action.payload
-        }
+        },
     },
+    extraReducers: {
+        // @ts-ignore
+        [sendMovieRating.rejected]: (state, action) => {
+            state.fetchStatus = "rejected"
+            state.error = action.payload
+        }
+    }
 })
 
 const movieReducer = movieSlice.reducer;
 export default movieReducer;
 
-export const {setMovies, getMovieInfo, getId, getMoviePhotos, setMovieCredits, setVideo} = movieSlice.actions;
+export const {
+    setMovies,
+    getMovieInfo,
+    getId,
+    getMoviePhotos,
+    setMovieCredits,
+    setVideo,
+} = movieSlice.actions;

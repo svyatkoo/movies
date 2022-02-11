@@ -5,7 +5,6 @@ import {IMovie} from "../../interfaces/movie.interface";
 import {photoSize, photoURL} from "../../configs/urls";
 import {useAppDispatch} from "../../hooks";
 import {getId} from "../../store";
-
 // @ts-ignore
 import css from "../components.module.css";
 

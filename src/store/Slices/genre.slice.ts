@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IGenres, IGenre} from "../../interfaces/genre.interface";
+
+import {IGenre, IGenres} from "../../interfaces/genre.interface";
 import {genreService} from "../../services/genre.service";
 
 interface IGenreState {
@@ -8,7 +9,7 @@ interface IGenreState {
     genreName: string | null
 }
 
-const initialState:IGenreState = {
+const initialState: IGenreState = {
     genres: [],
     genreId: null,
     genreName: null
@@ -16,20 +17,20 @@ const initialState:IGenreState = {
 
 export const getAllGenres = createAsyncThunk(
     "genreSlice/getAllGenres",
-    async (_,{dispatch}) => {
+    async (_, {dispatch}) => {
         const {data} = await genreService.getAll();
         dispatch(setGenres({data}))
     }
 )
 
 const genreSlice = createSlice({
-    name:"genreSlice",
+    name: "genreSlice",
     initialState,
     reducers: {
-        setGenres:(state, action:PayloadAction<{data: IGenres}>) => {
+        setGenres: (state, action: PayloadAction<{ data: IGenres }>) => {
             state.genres = action.payload.data.genres
         },
-        setGenre:(state, action:PayloadAction<{data:IGenre}>) => {
+        setGenre: (state, action: PayloadAction<{ data: IGenre }>) => {
             state.genreId = action.payload.data.id;
             state.genreName = action.payload.data.name;
         }

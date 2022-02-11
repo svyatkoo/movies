@@ -16,7 +16,8 @@ export const movieService = {
     (`${urls.discover}${urls.movie}?with_genres=${id}&api_key=${apiKey.token}`),
     changeGenreMoviePage: (page: number, id: number) =>
         moviesAxiosService.get<IMovies>(`${urls.discover}${urls.movie}?with_genres=${id}&page=${page}&api_key=${apiKey.token}`),
-    getCredits:(id: number) => moviesAxiosService.get<ICredits>(`${urls.movie}/${id}/credits?api_key=${apiKey.token}`),
-    getVideo:(id:number) => moviesAxiosService.get<IMovieVideo>(`${urls.movie}/${id}/videos?api_key=${apiKey.token}`)
+    getCredits: (id: number) => moviesAxiosService.get<ICredits>(`${urls.movie}/${id}/credits?api_key=${apiKey.token}`),
+    getVideo: (id: number) => moviesAxiosService.get<IMovieVideo>(`${urls.movie}/${id}/videos?api_key=${apiKey.token}`),
+    sendRating: (id: number, value: object) => moviesAxiosService.post(`${urls.movie}/${id}/rating?api_key=${apiKey.token}`, value)
 }
 

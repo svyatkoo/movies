@@ -39,7 +39,7 @@ const MoviesGenreListPage: FC = () => {
 
                 {page ? <h3>Page: {page} of: {total_pages}</h3> : ""}
 
-                {(page  && total_pages) && page <= total_pages ? <button onClick={() => {
+                {(page && total_pages) && page <= total_pages ? <button onClick={() => {
                     const newPage = page + 1;
                     dispatch(changeGenreMoviesPage({newPage, genreId}))
                 }}>Next</button> : ""}

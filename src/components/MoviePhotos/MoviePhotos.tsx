@@ -12,7 +12,10 @@ const MoviePhotos: FC<{ photos: IMovieImages }> = ({photos}) => {
 
     return (
         <div className={css.photosWrapper}>
-            {backdrops.map(item => <img key={backdrops.indexOf(item)} src={`${preLink}${item.file_path}`} alt="photo"/>)}
+            {backdrops.map(item => <img key={backdrops.indexOf(item)}
+                                        src={`${preLink}${item.file_path}`}
+                                        alt="photo"
+            />)}
         </div>
     );
 };

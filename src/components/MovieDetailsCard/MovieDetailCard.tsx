@@ -6,6 +6,7 @@ import {MoviePhotos} from "../MoviePhotos/MoviePhotos";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {getMovieCredits, getMovieVideo, getPhotos} from "../../store";
 import {MovieCast} from "../MovieCast/MovieCast";
+import {Stars} from "../Stars/Stars";
 // @ts-ignore
 import css from "../components.module.css";
 
@@ -17,7 +18,7 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
     } = movieData;
     const poster = photoURL + photoSize.w300 + poster_path;
 
-    const {moviePhotos, credits, video} = useAppSelector(state => state.movieReducer);
+    const {moviePhotos, credits, video, fetchStatus, error} = useAppSelector(state => state.movieReducer);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -35,9 +36,17 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
                     </div>
 
                     <div className={css.leftSliderInfo}>
-                        <div>Vote average: {vote_average}</div>
+                        <Stars voteRating={vote_average} id={id}/>
+                        {fetchStatus === "rejected" &&
+                            <div className={css.errorMessage}>
+                                <span>Please login first!</span>
+                                <p>Error message: {error}</p>
+                            </div>
+                        }
+                        <div>Rating: {vote_average} / 10</div>
                         <div>Vote count: {vote_count}</div>
                         <div>Popularity: {popularity}</div>
+
                     </div>
                 </div>
 
@@ -73,8 +82,6 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
                     <div className={css.mainBodyPhotoSlider}>
                         {moviePhotos && <MoviePhotos key={moviePhotos.id} photos={moviePhotos}/>}
                     </div>
-
-
                 </div>
             </div>
 

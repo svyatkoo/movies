@@ -12,6 +12,7 @@ const HomePage: FC = () => {
         const currentTheme = localStorage.getItem("theme") || "light";
         localStorage.setItem("theme", currentTheme);
     }
+
     getTheme()
 
     function switchTheme() {
@@ -27,7 +28,6 @@ const HomePage: FC = () => {
             <div className={css.header}>
                 <div className={css.headerMenu}>
                     <NavLink to={"movies"}>Movies</NavLink>
-                    <NavLink to={"tv"}>TV</NavLink>
                     <NavLink to={"user"}>UserPage</NavLink>
                 </div>
 

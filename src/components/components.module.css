@@ -122,6 +122,20 @@
     text-decoration: none;
 }
 
+
+.genres {
+    display: flex;
+    column-gap: 5px;
+}
+
+.genres a {
+    color: var(--textColorDetails);
+}
+
+.genres div:last-child span{
+    display: none;
+}
+
 .mainBodyActors {
     margin-top: 10px;
 }

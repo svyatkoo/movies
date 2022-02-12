@@ -36,8 +36,12 @@ const initialState: IMovieState = {
 export const getAllMovies = createAsyncThunk<void, void>(
     "movieSlice/getAllMovies",
     async (_, {dispatch}) => {
-        const {data} = await movieService.getAll();
-        dispatch(setMovies({moviesData: data}));
+        try {
+            const {data} = await movieService.getAll();
+            dispatch(setMovies({moviesData: data}));
+        } catch (e) {
+            console.log(e)
+        }
     }
 )
 
@@ -99,7 +103,7 @@ export const getMovieVideo = createAsyncThunk<void, number>(
 
 export const sendMovieRating = createAsyncThunk<void, any>(
     "movieSlice/sendMovieRating",
-    async ({id, userRating}, {dispatch, rejectWithValue}) => {
+    async ({id, userRating}, {rejectWithValue}) => {
         try {
             await movieService.sendRating(id, userRating);
         } catch (e: any) {
@@ -136,12 +140,12 @@ const movieSlice = createSlice({
         },
     },
     extraReducers: {
-        // @ts-ignore
-        [sendMovieRating.rejected]: (state, action) => {
+        [sendMovieRating.rejected.type]: (state, action) => {
             state.fetchStatus = "rejected"
             state.error = action.payload
         }
     }
+
 })
 
 const movieReducer = movieSlice.reducer;

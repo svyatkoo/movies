@@ -4,11 +4,12 @@ import {IMovieDetails} from "../../interfaces/movie.details.interface";
 import {photoSize, photoURL} from "../../configs/urls";
 import {MoviePhotos} from "../MoviePhotos/MoviePhotos";
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {getMovieCredits, getMovieVideo, getPhotos} from "../../store";
+import {getMovieCredits, getMoviesByGenre, getMovieVideo, getPhotos} from "../../store";
 import {MovieCast} from "../MovieCast/MovieCast";
 import {Stars} from "../Stars/Stars";
 // @ts-ignore
 import css from "../components.module.css";
+import {Link} from "react-router-dom";
 
 const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
     const {
@@ -19,13 +20,14 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
     const poster = photoURL + photoSize.w300 + poster_path;
 
     const {moviePhotos, credits, video, fetchStatus, error} = useAppSelector(state => state.movieReducer);
+    // const {genres} = useAppSelector(state => state.genreReducer);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(getPhotos(id));
         dispatch(getMovieCredits(id));
         dispatch(getMovieVideo(id));
-    }, [id])
+    }, [dispatch, id])
 
     return (
         <div className={css.container}>
@@ -58,7 +60,19 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
 
                     <div className={css.mainBodyHeader}>
                         <div>Runtime: {runtime} min.</div>
-                        <div>Genres: | {genres.map(item => item.name + " | ")}</div>
+                        <div className={css.genres}>Genres: {genres.map(item =>
+                            <div>
+                                <Link
+                                    key={item.id}
+                                    to={"/movies/genre/" + item.id}
+                                    onClick={() => dispatch(getMoviesByGenre(item.id))}
+                                >
+                                    {item.name} <span>,</span>
+                                </Link>
+                            </div>
+                        )}</div>
+
+
                         <div>Production countries: {production_countries[0].name}</div>
                         <div>Budget: {budget}$</div>
                         <div>Release date: {release_date}</div>

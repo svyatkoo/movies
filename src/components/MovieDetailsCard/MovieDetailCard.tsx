@@ -4,7 +4,7 @@ import {IMovieDetails} from "../../interfaces/movie.details.interface";
 import {photoSize, photoURL} from "../../configs/urls";
 import {MoviePhotos} from "../MoviePhotos/MoviePhotos";
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {getMovieCredits, getMoviesByGenre, getMovieVideo, getPhotos} from "../../store";
+import {getMovieCredits, getMoviesByGenre, getMovieVideo, getPhotos, setGenre} from "../../store";
 import {MovieCast} from "../MovieCast/MovieCast";
 import {Stars} from "../Stars/Stars";
 // @ts-ignore
@@ -20,7 +20,6 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
     const poster = photoURL + photoSize.w300 + poster_path;
 
     const {moviePhotos, credits, video, fetchStatus, error} = useAppSelector(state => state.movieReducer);
-    // const {genres} = useAppSelector(state => state.genreReducer);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -65,8 +64,10 @@ const MovieDetailCard: FC<{ movieData: IMovieDetails }> = ({movieData}) => {
                                 <Link
                                     key={item.id}
                                     to={"/movies/genre/" + item.id}
-                                    onClick={() => dispatch(getMoviesByGenre(item.id))}
-                                >
+                                    onClick={() => {
+                                        dispatch(setGenre({data: item}));
+                                        dispatch(getMoviesByGenre(item.id))
+                                    }}>
                                     {item.name} <span>,</span>
                                 </Link>
                             </div>
